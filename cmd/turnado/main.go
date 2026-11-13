@@ -24,7 +24,7 @@ func usage() {
 	}
 	fmt.Fprintln(os.Stderr, "  --version, -V  Print version")
 	fmt.Fprintln(os.Stderr, "\nRFC 6062 required: scan, tcprelay, socks --direct, and the TCP probes in info.")
-	fmt.Fprintln(os.Stderr, "Paired socks, tunnel, forward, and dos use TURN UDP allocations.")
+	fmt.Fprintln(os.Stderr, "Paired socks, tunnel, and forward use TURN UDP allocations.")
 	fmt.Fprintln(os.Stderr, "\nExamples:")
 	fmt.Fprintln(os.Stderr, "  turnado info -t turn.example.org:3478 -u user -p -")
 	fmt.Fprintln(os.Stderr, "  turnado help tunnel")

@@ -19,7 +19,6 @@ The following modes are implemented:
 - `socks`: SOCKS5-over-TURN tunnel.
 - `tunnel`: Full IP tunnel for tunneling arbitrary traffic through TURN.
 - `forward`: UDP forwarder over TURN.
-- `dos`: Create many allocations for load testing.
 
 The UDP control socket supports IPv4 and IPv6 TURN servers. TCP, TLS and DTLS control connections can also use IPv6 addresses. Select TURN over DTLS (RFC 7350) with `-T dtls`; server certificate verification is enabled by default, and `-k` skips it for test servers.
 
@@ -349,30 +348,6 @@ $ curl --http3-only --connect-to ipinfo.io:443:127.0.0.1:9999 https://ipinfo.io/
   "readme": "https://ipinfo.io/missingauth"
 }
 ```
-
-
-### dos
-
-The `dos` mode creates as many allocations as specified within the `-s/--sessions` parameter.
-Since possible relayed address pairs are finite due to port exhaustion on the TURN server, this could cause a denial of service of the TURN service:
-
-Use `--parallel N` to bound concurrent attempts (default 16), `--rate N` to limit new attempts per second, and `--stop-first` to stop after the first failed allocation. The output includes the number of successful and failed attempts and a histogram of TURN error codes. With `--stop-first`, a failure closes successful allocations and exits with an error; otherwise allocations stay active until Ctrl+C.
-
-```sh
-$ turnado dos -t <turnserver> -u <username> -p <password> -s 10000
-
-    [...]
-
-2026/01/30 10:25:57.216069 [session 3413] allocate failed: all retransmissions failed for J/4JdOaPqaazJbB1
-2026/01/30 10:25:57.218983 [session 3933] allocate failed: all retransmissions failed for ncDklprMUn2ZZIw1
-2026/01/30 10:25:57.220065 [session 3545] allocate failed: all retransmissions failed for AGpSwfIc7wbkVMuM
-2026/01/30 10:25:57.220080 Active allocations: 3917/10000. Press Ctrl+C to close.
-```
-
-As shown above, only 3917 allocations were made successfully before the TURN service went into a denial of service state.
-
-**USE THIS MODE WITH CAUTION!**
-
 
 
 ## Proxy support

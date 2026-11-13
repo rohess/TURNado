@@ -10,4 +10,4 @@ go run ./cmd/turnado info -t 127.0.0.1:3479 -u test -p password
 docker compose -f lab/compose.yaml --profile permissive down
 ```
 
-The restricted server's `--user-quota=4` can be tested with `dos --sessions 8 --parallel 1 --stop-first`. The permissive server is intended for the relay response and RFC 6062 probes. The two servers use separate relay port ranges.
+The permissive server is intended for the relay response and RFC 6062 probes. The two servers use separate relay port ranges.

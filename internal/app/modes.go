@@ -20,7 +20,6 @@ func Modes() []Mode {
 	}
 	return append(modes,
 		Mode{"forward", "UDP forwarder over TURN", RunForward},
-		Mode{"dos", "Mass allocation creation for load tests", RunDOS},
 	)
 }
 

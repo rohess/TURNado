@@ -27,9 +27,6 @@ var modeExamples = map[string][]string{
 		"turnado forward -t turn.example.org:3478 -u user -p - -P ipinfo.io:443",
 		"curl --http3-only --connect-to ipinfo.io:443:127.0.0.1:9999 https://ipinfo.io/ip",
 	},
-	"dos": {
-		"turnado dos -t turn.example.org:3478 -u user -p - -s 10 --rate 2",
-	},
 }
 
 var modeRequirements = map[string]string{
@@ -39,7 +36,6 @@ var modeRequirements = map[string]string{
 	"socks":   "Paired SOCKS uses TURN UDP allocations. Only --direct requires RFC 6062 TCP allocations (CONNECT only).",
 	"tunnel":  "Uses TURN UDP allocations; RFC 6062 is not required.",
 	"forward": "Uses a TURN UDP allocation; RFC 6062 is not required.",
-	"dos":     "Uses TURN UDP allocations; RFC 6062 is not required.",
 }
 
 func printModeExamples(w io.Writer, mode string) {
